@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Steven Bossert</title>
+<meta name="description" content="Steven Bossert – Projektkoordination, Service Operations und Prozessoptimierung im Raum Zürich.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&display=swap">
+<style>
+/* Layout: one calm column, soft pastel panels per section, photo-led intro */
+:root {
+  --bg: #f5f6fa;
+  --surface: #ffffff;
+  --ink: #23263a;
+  --muted: #5d6178;
+  --line: #e3e5ee;
+  --sage: #dcebe2;
+  --sky: #dde7f6;
+  --lilac: #e8e2f4;
+  --peach: #f7e4da;
+  --accent: #4f5fae;
+  --accent-ink: #ffffff;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+  --radius: 22px;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 1.0625rem/1.65 var(--body); }
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(1.6rem, 3vw, 2rem); font-weight: 700; }
+h3 { font-size: 1.15rem; font-weight: 600; }
+p { margin: 0; }
+
+.wrap { max-width: 980px; margin: 0 auto; padding-inline: 20px; }
+
+/* Navigation */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
+.brand { font-family: var(--display); font-weight: 700; font-size: 1.1rem; color: var(--ink); text-decoration: none; }
+.nav ul { display: flex; gap: 6px; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
+.nav ul a { display: block; padding: 6px 12px; border-radius: 999px; color: var(--muted); text-decoration: none; font-size: .95rem; font-weight: 500; }
+.nav ul a:hover { background: var(--lilac); color: var(--ink); }
+@media (max-width: 640px) { .nav ul { display: none; } }
+
+main { display: grid; gap: 28px; padding-block: 36px 56px; }
+
+/* Intro: LinkedIn-style banner with overlapping portrait */
+.profile { background: var(--surface); border-radius: 32px; overflow: hidden; }
+.banner { display: block; width: 100%; height: clamp(150px, 24vw, 270px); }
+.profile-body { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 32px; padding: 0 clamp(22px, 5vw, 52px) clamp(28px, 5vw, 48px); }
+.photo { width: clamp(132px, 20vw, 190px); aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 6px solid var(--surface); background: var(--surface); margin-top: calc(-0.5 * clamp(132px, 20vw, 190px)); box-shadow: 0 14px 34px -18px rgba(35, 38, 58, .5); }
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-text { display: grid; gap: 16px; min-width: 0; padding-top: 22px; }
+.eyebrow { font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.hero-text h1 { font-size: clamp(2.2rem, 5vw, 3.3rem); font-weight: 700; letter-spacing: -.01em; }
+.lead { font-size: 1.2rem; color: var(--ink); max-width: 46ch; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag { background: var(--lilac); border-radius: 999px; padding: 5px 14px; font-size: .9rem; font-weight: 500; color: var(--ink); }
+.tag:nth-child(2) { background: var(--sage); } .tag:nth-child(3) { background: var(--peach); }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; padding-top: 6px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px; text-decoration: none; border: 0; font: 600 1rem var(--body); cursor: pointer; }
+.btn-primary { background: var(--accent); color: var(--accent-ink); }
+.btn-ghost { background: var(--sky); color: var(--ink); }
+.btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
+.place { color: var(--muted); font-size: .95rem; }
+@media (max-width: 760px) {
+  .profile-body { grid-template-columns: minmax(0, 1fr); }
+  .hero-text { padding-top: 4px; }
+}
+
+/* Sections */
+.section { background: var(--surface); border-radius: var(--radius); padding: clamp(24px, 4vw, 44px); display: grid; gap: 24px; }
+.section-head { display: grid; gap: 6px; }
+.section-head p { color: var(--muted); max-width: 60ch; }
+
+.about { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 32px; }
+.about p + p { margin-top: 14px; }
+.about-text { max-width: 62ch; min-width: 0; }
+.focus { display: grid; gap: 12px; align-content: start; }
+.focus-item { border-radius: 16px; padding: 16px 18px; display: grid; gap: 4px; }
+.focus-item p { color: var(--muted); font-size: .97rem; }
+.focus-item:nth-child(1) { background: var(--sage); }
+.focus-item:nth-child(2) { background: var(--sky); }
+.focus-item:nth-child(3) { background: var(--lilac); }
+@media (max-width: 760px) { .about { grid-template-columns: minmax(0, 1fr); } }
+
+/* Timeline */
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.timeline li { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: 20px; padding-block: 20px; border-top: 1px solid var(--line); }
+.timeline li:first-child { border-top: 0; padding-top: 4px; }
+.when { font-variant-numeric: tabular-nums; color: var(--muted); font-weight: 500; font-size: .95rem; padding-top: 2px; }
+.what { display: grid; gap: 6px; min-width: 0; }
+.org { color: var(--muted); font-size: .95rem; }
+.what ul { margin: 4px 0 0; padding-left: 1.1rem; color: var(--ink); display: grid; gap: 4px; }
+.pill { justify-self: start; font-size: .75rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; border-radius: 999px; padding: 3px 10px; color: var(--ink); }
+.pill.sage { background: var(--sage); } .pill.sky { background: var(--sky); } .pill.lilac { background: var(--lilac); } .pill.peach { background: var(--peach); }
+@media (max-width: 560px) { .timeline li { grid-template-columns: minmax(0, 1fr); gap: 6px; } }
+
+/* Two-up */
+.duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+@media (max-width: 760px) { .duo { grid-template-columns: minmax(0, 1fr); } }
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.list li { display: grid; gap: 2px; }
+.list .meta { color: var(--muted); font-size: .95rem; }
+
+.langs { display: grid; gap: 12px; }
+.lang { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); align-items: center; gap: 14px; }
+.lang span { font-weight: 500; }
+.bar { height: 10px; border-radius: 999px; background: var(--line); overflow: hidden; }
+.bar i { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 45%, var(--lilac))); }
+.lang small { grid-column: 2; color: var(--muted); font-size: .85rem; margin-top: -6px; }
+
+/* Contact */
+.contact { background: linear-gradient(135deg, var(--sage), var(--sky)); border-radius: 32px; padding: clamp(28px, 5vw, 52px); display: grid; gap: 18px; justify-items: start; }
+.contact p { max-width: 52ch; }
+.mail { font-family: var(--display); font-size: clamp(1.15rem, 3.5vw, 1.6rem); font-weight: 600; color: var(--ink); word-break: break-all; user-select: all; }
+.reach { display: grid; gap: 6px; }
+.mail { text-decoration: none; }
+.copied { color: var(--muted); font-size: .9rem; min-height: 1.4em; }
+
+footer { color: var(--muted); font-size: .9rem; padding-block: 0 40px; }
+footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Seitennavigation">
+  <div class="wrap">
+    <a class="brand" href="#top">Steven Bossert</a>
+    <ul>
+      <li><a href="#ueber-mich">Über mich</a></li>
+      <li><a href="#werdegang">Werdegang</a></li>
+      <li><a href="#ausbildung">Ausbildung</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap" id="top">
+  <header class="profile">
+    <svg class="banner" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration: Industrieroboter, Förderband und Pneumatik-Komponenten">
+      <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#dde7f6"/><stop offset=".55" stop-color="#e8e2f4"/><stop offset="1" stop-color="#f7e4da"/>
+        </linearGradient>
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity=".55" stroke-width="1"/>
+        </pattern>
+        <linearGradient id="cyl" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e4e7f1"/>
+        </linearGradient>
+      </defs>
+      <rect width="1200" height="300" fill="url(#bg)"/>
+      <rect width="1200" height="300" fill="url(#grid)"/>
+      <rect x="0" y="262" width="1200" height="38" fill="#ffffff" fill-opacity=".45"/>
+
+      <!-- Druckluft-Leitungen -->
+      <g fill="none" stroke-linecap="round" stroke-width="7">
+        <path d="M150 178 C150 120 210 95 300 95" stroke="#8fc3a8"/>
+        <path d="M185 178 C185 150 230 140 300 140" stroke="#f0b39b"/>
+        <path d="M220 178 C220 205 250 210 330 210" stroke="#8fc3a8"/>
+        <path d="M255 178 C270 250 330 250 380 250" stroke="#f0b39b"/>
+        <path d="M520 95 C600 95 620 60 700 60" stroke="#b9c2e8" stroke-dasharray="2 14"/>
+      </g>
+
+      <!-- Ventilinsel -->
+      <g>
+        <rect x="120" y="172" width="160" height="62" rx="12" fill="#ffffff" stroke="#b8bfd8" stroke-width="2"/>
+        <rect x="132" y="184" width="30" height="38" rx="6" fill="#dcebe2"/>
+        <rect x="167" y="184" width="30" height="38" rx="6" fill="#dde7f6"/>
+        <rect x="202" y="184" width="30" height="38" rx="6" fill="#dcebe2"/>
+        <rect x="237" y="184" width="30" height="38" rx="6" fill="#f7e4da"/>
+        <circle cx="147" cy="194" r="4" fill="#5fb38a"/><circle cx="217" cy="194" r="4" fill="#5fb38a"/>
+        <circle cx="182" cy="194" r="4" fill="#c9cede"/><circle cx="252" cy="194" r="4" fill="#c9cede"/>
+      </g>
+
+      <!-- Manometer -->
+      <g>
+        <line x1="80" y1="150" x2="80" y2="200" stroke="#b8bfd8" stroke-width="6" stroke-linecap="round"/>
+        <line x1="80" y1="200" x2="120" y2="200" stroke="#b8bfd8" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="80" cy="118" r="34" fill="#ffffff" stroke="#b8bfd8" stroke-width="3"/>
+        <path d="M58 132 A26 26 0 1 1 102 132" fill="none" stroke="#dde7f6" stroke-width="6" stroke-linecap="round"/>
+        <path d="M58 132 A26 26 0 0 1 72 94" fill="none" stroke="#8fc3a8" stroke-width="6" stroke-linecap="round"/>
+        <line x1="80" y1="118" x2="96" y2="102" stroke="#4f5fae" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="80" cy="118" r="4" fill="#4f5fae"/>
+      </g>
+
+      <!-- Pneumatikzylinder 1 -->
+      <g>
+        <rect x="300" y="78" width="200" height="36" rx="10" fill="url(#cyl)" stroke="#b8bfd8" stroke-width="2"/>
+        <rect x="292" y="74" width="16" height="44" rx="4" fill="#c9cede"/>
+        <rect x="492" y="74" width="16" height="44" rx="4" fill="#c9cede"/>
+        <rect x="508" y="90" width="72" height="12" rx="6" fill="#c7ccdc"/>
+        <rect x="576" y="82" width="18" height="28" rx="5" fill="#aeb8e6"/>
+      </g>
+      <!-- Pneumatikzylinder 2 -->
+      <g>
+        <rect x="330" y="195" width="150" height="32" rx="10" fill="url(#cyl)" stroke="#b8bfd8" stroke-width="2"/>
+        <rect x="322" y="191" width="14" height="40" rx="4" fill="#c9cede"/>
+        <rect x="474" y="191" width="14" height="40" rx="4" fill="#c9cede"/>
+        <rect x="488" y="205" width="44" height="12" rx="6" fill="#c7ccdc"/>
+        <rect x="528" y="198" width="16" height="26" rx="5" fill="#f0b39b"/>
+      </g>
+
+      <!-- Zahnräder -->
+      <g fill="none" stroke="#ffffff" stroke-width="10" stroke-opacity=".8">
+        <circle cx="700" cy="60" r="26" stroke-dasharray="9 7"/>
+        <circle cx="742" cy="98" r="16" stroke-dasharray="6 6"/>
+      </g>
+
+      <!-- Förderband -->
+      <g>
+        <rect x="930" y="238" width="260" height="20" rx="10" fill="#ffffff" stroke="#b8bfd8" stroke-width="2"/>
+        <circle cx="945" cy="248" r="6" fill="#c9cede"/><circle cx="1000" cy="248" r="6" fill="#c9cede"/>
+        <circle cx="1055" cy="248" r="6" fill="#c9cede"/><circle cx="1110" cy="248" r="6" fill="#c9cede"/>
+        <circle cx="1165" cy="248" r="6" fill="#c9cede"/>
+        <rect x="1120" y="204" width="44" height="34" rx="6" fill="#f7e4da" stroke="#e3b7a3" stroke-width="2"/>
+        <rect x="1020" y="210" width="38" height="28" rx="6" fill="#dcebe2" stroke="#a9cdb8" stroke-width="2"/>
+      </g>
+
+      <!-- Industrieroboter -->
+      <g stroke-linecap="round">
+        <rect x="770" y="236" width="120" height="26" rx="8" fill="#8592cf"/>
+        <path d="M790 236 Q830 196 870 236 Z" fill="#aeb8e6"/>
+        <line x1="830" y1="214" x2="890" y2="96" stroke="#aeb8e6" stroke-width="36"/>
+        <circle cx="830" cy="214" r="20" fill="#8592cf"/>
+        <line x1="890" y1="96" x2="1030" y2="126" stroke="#aeb8e6" stroke-width="26"/>
+        <circle cx="890" cy="96" r="22" fill="#8592cf"/>
+        <circle cx="890" cy="96" r="8" fill="#e8e2f4"/>
+        <circle cx="1032" cy="128" r="14" fill="#8592cf"/>
+        <line x1="1036" y1="140" x2="1038" y2="170" stroke="#8592cf" stroke-width="12"/>
+        <path d="M1022 172 h32" stroke="#8592cf" stroke-width="8"/>
+        <path d="M1024 172 v22 M1052 172 v22" stroke="#8592cf" stroke-width="7"/>
+        <rect x="1020" y="194" width="36" height="6" rx="3" fill="#4f5fae" opacity=".35"/>
+      </g>
+    </svg>
+    <div class="profile-body">
+      <div class="photo"><img src="assets/steven.jpg" alt="Porträt von Steven Bossert" width="640" height="640"></div>
+      <div class="hero-text">
+        <span class="eyebrow">Project Coordination · Service Operations · Prozessoptimierung</span>
+        <h1>Steven Bossert</h1>
+        <p class="lead">Ich bringe Struktur in technische Abläufe und sorge dafür, dass Menschen, Technik und Termine zusammenpassen.</p>
+        <div class="tags" aria-label="Branchenerfahrung">
+          <span class="tag">Aviation</span>
+          <span class="tag">Medizintechnik</span>
+          <span class="tag">Technical Service</span>
+        </div>
+        <p class="place">Raum Zürich, Schweiz</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#kontakt">Kontakt aufnehmen</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/steven-bossert" target="_blank" rel="noopener">LinkedIn-Profil</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="section" id="ueber-mich" aria-labelledby="h-about">
+    <div class="section-head">
+      <span class="eyebrow">Über mich</span>
+      <h2 id="h-about">Vom Triebwerk zum Prozess</h2>
+    </div>
+    <div class="about">
+      <div class="about-text">
+        <p>Angefangen habe ich als Polymechaniker und in der Triebwerksinstandhaltung bei SR Technics. Dort habe ich gelernt, wie wichtig saubere Abläufe, klare Standards und gute Zusammenarbeit sind.</p>
+        <p>Heute verbinde ich diese technische Praxis mit Projektkoordination, Service Operations und Prozessoptimierung. Ich plane internationale Techniker-Einsätze, koordiniere Schnittstellen zwischen Kunden, Fachbereichen und Partnern und verbessere Prozesse Schritt für Schritt.</p>
+        <p>Meine Erfahrung stammt aus anspruchsvollen und regulierten Umfeldern wie Aviation, Medizintechnik und internationalem Technical Service. Seit Oktober 2026 bilde ich mich an der KV Business School Zürich zum Digital Collaboration Specialist mit eidgenössischem Fachausweis weiter.</p>
+      </div>
+      <div class="focus" aria-label="Schwerpunkte">
+        <div class="focus-item"><h3>Projektkoordination</h3><p>Einsätze planen, Ressourcen und Termine abstimmen, Projekte auf Kurs halten.</p></div>
+        <div class="focus-item"><h3>Service Operations</h3><p>Schnittstellen zwischen Kunden, Technikern und Partnern steuern.</p></div>
+        <div class="focus-item"><h3>Prozessoptimierung</h3><p>Abläufe analysieren, standardisieren und digital weiterentwickeln.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="werdegang" aria-labelledby="h-career">
+    <div class="section-head">
+      <span class="eyebrow">Werdegang</span>
+      <h2 id="h-career">Stationen</h2>
+    </div>
+    <ol class="timeline">
+      <li>
+        <span class="when">seit Okt. 2026</span>
+        <div class="what">
+          <span class="pill lilac">Weiterbildung</span>
+          <h3>Digital Collaboration Specialist mit eidg. Fachausweis</h3>
+          <span class="org">KV Business School Zürich</span>
+          <p>Digitale Zusammenarbeit, moderne Arbeitsmethoden und Tools für Teams und Projekte.</p>
+        </div>
+      </li>
+      <li>
+        <span class="when">2026</span>
+        <div class="what">
+          <span class="pill lilac">Weiterbildung</span>
+          <h3>Coding Bootcamp „Piscine“</h3>
+          <span class="org">42 Zürich</span>
+          <p>Intensives Bootcamp mit Peer-to-Peer-Lernen und Teamprojekten rund um C-Programmierung, Unix/Linux-Shell, Git und Algorithmen.</p>
+        </div>
+      </li>
+      <li>
+        <span class="when">2024 – 2026</span>
+        <div class="what">
+          <span class="pill sky">Technical Service</span>
+          <h3>Service Operations &amp; Project Coordination</h3>
+          <span class="org">Beck Automation AG, Dällikon</span>
+          <ul>
+            <li>Planung und Steuerung internationaler Techniker-Einsätze</li>
+            <li>Koordination zwischen Kunden, Technikern, Fachbereichen und Partnern</li>
+            <li>Mehrsprachige Briefings und Debriefings</li>
+            <li>Optimierung globaler Serviceprozesse und Mitarbeit an Projekten zur digitalen Transformation</li>
+          </ul>
+          <p class="org">Davor im selben Unternehmen: Ersatzteilvertrieb, technischer Support und Anlagenmodifikationen.</p>
+        </div>
+      </li>
+      <li>
+        <span class="when">2020 – 2023</span>
+        <div class="what">
+          <span class="pill sage">Medizintechnik</span>
+          <h3>Production &amp; Quality Operations</h3>
+          <span class="org">Roche, Rotkreuz</span>
+          <ul>
+            <li>Arbeit im regulierten Produktionsumfeld nach GMP-Richtlinien</li>
+            <li>Unterstützung bei Mitarbeitertrainings und standardisierten Abläufen</li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <span class="when">2016 – 2020</span>
+        <div class="what">
+          <span class="pill peach">Aviation</span>
+          <h3>Polymechaniker &amp; Aircraft Engine Mechanic</h3>
+          <span class="org">SR Technics, Kloten</span>
+          <ul>
+            <li>Technische Instandhaltung von Flugzeugtriebwerken</li>
+            <li>Arbeiten nach strengen Sicherheits- und Qualitätsstandards</li>
+          </ul>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="section" id="ausbildung" aria-labelledby="h-edu">
+    <div class="duo">
+      <div class="section-head" style="gap:18px">
+        <div class="section-head">
+          <span class="eyebrow">Ausbildung</span>
+          <h2 id="h-edu">Abschlüsse</h2>
+        </div>
+        <ul class="list">
+          <li><strong>Digital Collaboration Specialist mit eidg. Fachausweis</strong><span class="meta">KV Business School Zürich · laufend, seit 2026</span></li>
+          <li><strong>Höheres Wirtschaftsdiplom</strong><span class="meta">KV Business School Zürich · 2025</span></li>
+          <li><strong>Projektmanager edupool.ch</strong><span class="meta">Bildungszentrum Zürichsee · 2023</span></li>
+          <li><strong>Polymechaniker EFZ</strong><span class="meta">Berufsschule Bülach · 2020</span></li>
+          <li><strong>First Certificate in English (B2)</strong><span class="meta">University of Cambridge · 2019</span></li>
+        </ul>
+      </div>
+      <div class="section-head" style="gap:18px">
+        <div class="section-head">
+          <span class="eyebrow">Sprachen</span>
+          <h2>Sechs Sprachen</h2>
+        </div>
+        <div class="langs">
+          <div class="lang"><span>Deutsch</span><div class="bar"><i style="width:100%"></i></div><small>Muttersprache</small></div>
+          <div class="lang"><span>Portugiesisch</span><div class="bar"><i style="width:100%"></i></div><small>Muttersprache</small></div>
+          <div class="lang"><span>Englisch</span><div class="bar"><i style="width:88%"></i></div><small>verhandlungssicher</small></div>
+          <div class="lang"><span>Spanisch</span><div class="bar"><i style="width:72%"></i></div><small>gute Kenntnisse</small></div>
+          <div class="lang"><span>Italienisch</span><div class="bar"><i style="width:45%"></i></div><small>Grundkenntnisse</small></div>
+          <div class="lang"><span>Französisch</span><div class="bar"><i style="width:30%"></i></div><small>Grundkenntnisse</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="h-engage">
+    <div class="section-head">
+      <span class="eyebrow">Engagement</span>
+      <h2 id="h-engage">Neben dem Beruf</h2>
+    </div>
+    <ul class="list">
+      <li><strong>Jugendkommission, Ressort Veranstaltungen</strong><span class="meta">Gemeinde Oberengstringen · 2022 – 2026</span></li>
+      <li><strong>Zivildienst in der Betreuung von Jugendlichen und Erwachsenen</strong><span class="meta">Terra Est Vita Stiftung, Zürich · 2025 – 2026</span></li>
+    </ul>
+  </section>
+
+  <section class="contact" id="kontakt" aria-labelledby="h-contact">
+    <span class="eyebrow">Kontakt</span>
+    <h2 id="h-contact">Lass uns sprechen</h2>
+    <p>Du suchst Unterstützung in Projektkoordination, Service Operations oder Prozessoptimierung? Schreib mir gerne eine Nachricht oder ruf mich an.</p>
+    <div class="reach">
+      <a class="mail" href="mailto:stevenbossert91@gmail.com">stevenbossert91@gmail.com</a>
+      <a class="mail" href="tel:+41795497604">+41 79 549 76 04</a>
+    </div>
+    <div class="actions">
+      <button class="btn btn-primary" type="button" id="copy-mail">E-Mail-Adresse kopieren</button>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/steven-bossert" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <span class="copied" id="copied" aria-live="polite"></span>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Steven Bossert</span>
+    <span>Zürich, Schweiz</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('copy-mail').addEventListener('click', function () {
+  var out = document.getElementById('copied');
+  var mail = 'stevenbossert91@gmail.com';
+  function fallback() {
+    var r = document.createRange();
+    r.selectNodeContents(document.querySelector('.mail'));
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    out.textContent = 'Adresse markiert, jetzt mit Strg+C oder Cmd+C kopieren.';
+  }
+  try {
+    navigator.clipboard.writeText(mail).then(function () { out.textContent = 'Kopiert.'; }, fallback);
+  } catch (e) { fallback(); }
+});
+</script>
+
+</body>
+</html>
