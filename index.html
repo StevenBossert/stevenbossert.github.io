@@ -93,15 +93,22 @@ main { display: grid; gap: 28px; padding-block: 36px 56px; }
 
 /* Timeline */
 .timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
-.timeline li { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: 20px; padding-block: 20px; border-top: 1px solid var(--line); }
-.timeline li:first-child { border-top: 0; padding-top: 4px; }
+.timeline > li { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: 20px; padding-block: 20px; border-top: 1px solid var(--line); }
+.timeline > li:first-child { border-top: 0; padding-top: 4px; }
 .when { font-variant-numeric: tabular-nums; color: var(--muted); font-weight: 500; font-size: .95rem; padding-top: 2px; }
 .what { display: grid; gap: 6px; min-width: 0; }
 .org { color: var(--muted); font-size: .95rem; }
-.what ul { margin: 4px 0 0; padding-left: 1.1rem; color: var(--ink); display: grid; gap: 4px; }
+.what ul { margin: 4px 0 0; padding-left: 1.2rem; color: var(--ink); display: grid; gap: 6px; }
+.what ul { list-style-type: disc; }
+.what li::marker { font-size: 1.15em; }
+.what h4 { font: 600 1rem var(--body); margin: 10px 0 0; }
+.cat-lilac li::marker { color: #9a86cf; }
+.cat-sky li::marker { color: #6f8fd0; }
+.cat-sage li::marker { color: #5fa883; }
+.cat-peach li::marker { color: #e0916f; }
 .pill { justify-self: start; font-size: .75rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; border-radius: 999px; padding: 3px 10px; color: var(--ink); }
 .pill.sage { background: var(--sage); } .pill.sky { background: var(--sky); } .pill.lilac { background: var(--lilac); } .pill.peach { background: var(--peach); }
-@media (max-width: 560px) { .timeline li { grid-template-columns: minmax(0, 1fr); gap: 6px; } }
+@media (max-width: 560px) { .timeline > li { grid-template-columns: minmax(0, 1fr); gap: 6px; } }
 
 /* Two-up */
 .duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
@@ -287,7 +294,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
     <ol class="timeline">
       <li>
         <span class="when">seit Okt. 2026</span>
-        <div class="what">
+        <div class="what cat-lilac">
           <span class="pill lilac">Weiterbildung</span>
           <h3>Digital Collaboration Specialist mit eidg. Fachausweis</h3>
           <span class="org">KV Business School Zürich</span>
@@ -295,50 +302,72 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
         </div>
       </li>
       <li>
-        <span class="when">2026</span>
-        <div class="what">
+        <span class="when">Sep. – Okt. 2026</span>
+        <div class="what cat-lilac">
           <span class="pill lilac">Weiterbildung</span>
           <h3>Coding Bootcamp „Piscine“</h3>
           <span class="org">42 Zürich</span>
-          <p>Intensives Bootcamp mit Peer-to-Peer-Lernen und Teamprojekten rund um C-Programmierung, Unix/Linux-Shell, Git und Algorithmen.</p>
+          <ul>
+            <li>Peer-to-Peer-Lernen, Teamprojekte und Coding Challenges</li>
+            <li>C-Programmierung: Syntax, Datentypen, Funktionen und Schleifen</li>
+            <li>Strings, Arrays, Pointer sowie Speicher- und Zeichenverarbeitung</li>
+            <li>Kompilieren, Debugging und Code-Standards (Norminette)</li>
+            <li>Unix/Linux-Shell, Algorithmen und Problemlösung</li>
+            <li>Git: Versionskontrolle, Branching und Merging, Commit-, Push- und Pull-Workflows, Repository-Verwaltung</li>
+          </ul>
         </div>
       </li>
       <li>
         <span class="when">2024 – 2026</span>
-        <div class="what">
+        <div class="what cat-sky">
           <span class="pill sky">Technical Service</span>
           <h3>Service Operations &amp; Project Coordination</h3>
-          <span class="org">Beck Automation AG, Dällikon</span>
+          <span class="org">Beck Automation AG, Dällikon · Juli 2024 – September 2026</span>
           <ul>
-            <li>Planung und Steuerung internationaler Techniker-Einsätze</li>
-            <li>Koordination zwischen Kunden, Technikern, Fachbereichen und Partnern</li>
-            <li>Mehrsprachige Briefings und Debriefings</li>
-            <li>Optimierung globaler Serviceprozesse und Mitarbeit an Projekten zur digitalen Transformation</li>
+            <li>Planung und Steuerung internationaler Techniker-Einsätze unter Berücksichtigung von Ressourcen, Terminen, Kundenanforderungen und technischen Abhängigkeiten</li>
+            <li>Steuerung der Schnittstellen zwischen Kunden, Technikern, internen Fachbereichen und externen Partnern</li>
+            <li>Organisation mehrsprachiger Briefings und Debriefings zur Sicherstellung effizienter Service- und Projektabläufe</li>
+            <li>Analyse, Optimierung und Standardisierung operativer Abläufe sowie kontinuierliche Verbesserung globaler Serviceprozesse</li>
+            <li>Mitarbeit in internationalen Teilprojekten und Initiativen zur digitalen Transformation</li>
+            <li>Erstellung und Aufbereitung von Prozessdokumentationen, Arbeitsunterlagen, Auswertungen und Entscheidungsgrundlagen</li>
           </ul>
-          <p class="org">Davor im selben Unternehmen: Ersatzteilvertrieb, technischer Support und Anlagenmodifikationen.</p>
+          <h4>Technischer Support und Anlagenmodifikationen <span class="org">· Juli – Dezember 2024</span></h4>
+          <ul>
+            <li>Bearbeitung technischer Störungen</li>
+            <li>Verkauf, Planung und Koordination von Anlagenmodifikationen</li>
+          </ul>
+          <h4>Ersatzteilvertrieb und Auftragsabwicklung <span class="org">· Januar – Juni 2024</span></h4>
+          <ul>
+            <li>Kundenbetreuung</li>
+            <li>Verkauf von Ersatzteilen und Abwicklung der Ersatzteilaufträge</li>
+          </ul>
         </div>
       </li>
       <li>
         <span class="when">2020 – 2023</span>
-        <div class="what">
+        <div class="what cat-sage">
           <span class="pill sage">Medizintechnik</span>
           <h3>Production &amp; Quality Operations</h3>
-          <span class="org">Roche, Rotkreuz</span>
+          <span class="org">Roche, Rotkreuz · Dezember 2020 – Juli 2021 und Mai 2022 – Juni 2023</span>
           <ul>
-            <li>Arbeit im regulierten Produktionsumfeld nach GMP-Richtlinien</li>
-            <li>Unterstützung bei Mitarbeitertrainings und standardisierten Abläufen</li>
+            <li>Mitarbeit in einem regulierten Produktionsumfeld mit hohen Qualitäts- und Prozessstandards</li>
+            <li>Unterstützung bei Mitarbeitertrainings und standardisierten Arbeitsabläufen</li>
+            <li>Arbeiten nach GMP-Richtlinien und strukturierten Qualitätsprozessen</li>
+            <li>Präzise und effiziente Umsetzung standardisierter Produktionsabläufe</li>
           </ul>
         </div>
       </li>
       <li>
         <span class="when">2016 – 2020</span>
-        <div class="what">
+        <div class="what cat-peach">
           <span class="pill peach">Aviation</span>
           <h3>Polymechaniker &amp; Aircraft Engine Mechanic</h3>
-          <span class="org">SR Technics, Kloten</span>
+          <span class="org">SR Technics, Kloten · Lehre 2016 – 2020, Triebwerk ab 2018</span>
           <ul>
-            <li>Technische Instandhaltung von Flugzeugtriebwerken</li>
-            <li>Arbeiten nach strengen Sicherheits- und Qualitätsstandards</li>
+            <li>Technische Instandhaltung und strukturierte Arbeitsausführung im Aviation-Umfeld</li>
+            <li>Arbeiten nach definierten Sicherheits-, Qualitäts- und Prozessstandards</li>
+            <li>Teamübergreifende Zusammenarbeit in technischen Abläufen</li>
+            <li>Grundlagen in Prozessdisziplin, Problemlösung und technischem Qualitätsverständnis</li>
           </ul>
         </div>
       </li>
