@@ -132,6 +132,11 @@ main { display: grid; gap: 28px; padding-block: 36px 56px; }
 .mail { text-decoration: none; }
 .phone { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .wa { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: #25d366; color: #ffffff; transition: transform .15s; }
+.wa { border: 0; cursor: pointer; }
+.wa-wrap { position: relative; }
+.wa-menu { position: absolute; right: 0; top: calc(100% + 8px); z-index: 5; display: grid; min-width: 230px; padding: 6px; background: var(--surface); border-radius: 16px; box-shadow: 0 16px 40px -16px rgba(35, 38, 58, .4); }
+.wa-menu a { white-space: nowrap; padding: 10px 14px; border-radius: 10px; color: var(--ink); text-decoration: none; font-weight: 500; }
+.wa-menu a:hover, .wa-menu a:focus-visible { background: var(--sage); }
 .wa:hover { transform: translateY(-1px) scale(1.05); }
 .copied { color: var(--muted); font-size: .9rem; min-height: 1.4em; }
 
@@ -436,9 +441,15 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
       <a class="mail" href="mailto:stevenbossert91@gmail.com">stevenbossert91@gmail.com</a>
       <div class="phone">
         <a class="mail" href="tel:+41795497604">+41 79 549 76 04</a>
-        <a class="wa" href="https://wa.me/41795497604" target="_blank" rel="noopener" aria-label="Per WhatsApp schreiben" title="WhatsApp">
-          <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        </a>
+        <div class="wa-wrap">
+          <button class="wa" type="button" id="wa-btn" aria-haspopup="true" aria-expanded="false" aria-controls="wa-menu" aria-label="WhatsApp: schreiben oder anrufen">
+            <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </button>
+          <div class="wa-menu" id="wa-menu" hidden>
+            <a href="https://wa.me/41795497604" target="_blank" rel="noopener">💬 Per WhatsApp schreiben</a>
+            <a href="tel:+41795497604">📞 Anrufen</a>
+          </div>
+        </div>
       </div>
     </div>
     <div class="actions">
@@ -470,6 +481,14 @@ document.getElementById('copy-mail').addEventListener('click', function () {
     navigator.clipboard.writeText(mail).then(function () { out.textContent = 'Kopiert.'; }, fallback);
   } catch (e) { fallback(); }
 });
+(function () {
+  var btn = document.getElementById('wa-btn'), menu = document.getElementById('wa-menu');
+  function setOpen(open) { menu.hidden = !open; btn.setAttribute('aria-expanded', String(open)); }
+  btn.addEventListener('click', function (e) { e.stopPropagation(); setOpen(menu.hidden); });
+  menu.addEventListener('click', function () { setOpen(false); });
+  document.addEventListener('click', function (e) { if (!menu.hidden && !menu.contains(e.target)) setOpen(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+})();
 </script>
 
 </body>
